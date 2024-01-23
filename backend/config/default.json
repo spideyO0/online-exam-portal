@@ -1,6 +1,6 @@
 {
     "mongodb": {
-        "connectionString": "mongodb://localhost:27017/Online-Exam-Portal"
+        "connectionString": "mongodb+srv://flourishersedge:exam-portal@cluster0.it8g1sj.mongodb.net/exam-portal?retryWrites=true&w=majority"
     },
     "jwt": {
         "secret" : "Examination Portal Application"
