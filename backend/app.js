@@ -1,4 +1,3 @@
-
 var createError = require('http-errors');
 var express = require('express');
 const session = require('express-session');
@@ -11,6 +10,9 @@ var passport = require("./services/passportconf");
 var app = express();
 const cors = require('cors');
 
+// Import the module where getUserCompletedTestsCSV is defined
+const userCompletedTestsService = require('./services/getUserCompletedTestsCSV');
+
 app.use(helmet());
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -18,10 +20,9 @@ app.use(function(req, res, next) {
     next();
 });
 
-
 const corsOptions = {
     origin: '*'
-  }
+}
 app.use(cors(corsOptions));
 app.use(expressValidator());
 
@@ -34,7 +35,6 @@ var login = require("./routes/login");
 var adminLogin = require('./routes/adminLogin');
 var admin = require('./routes/admin');
 var user = require('./routes/user');
-
 
 //configs
 app.use(express.static(path.join(__dirname, 'public')));
@@ -71,6 +71,15 @@ app.use((err, req, res, next)=>{
     });
 });
 
+// Replace with the desired user ID
+// const userId = '65bf9b002759780036f1f9f8';
+
+// userCompletedTestsService.getUserCompletedTestsCSV(userId)
+//   .then(() => {
+//     console.log('CSV generation completed');
+//   })
+//   .catch(err => {
+//     console.error('Error:', err);
+//   });
 
 module.exports = app;
-
